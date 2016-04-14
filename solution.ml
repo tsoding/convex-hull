@@ -19,7 +19,10 @@ let angle_sort (sx, sy) ps =
      |> List.sort (fun (_, a1) (_, a2) -> compare a1 a2)
      |> List.map fst
 
-let check_clockwise p1 p2 p3 = false
+let check_clockwise (x1, y1) (x2, y2) (x3, y3) =
+  let (v1x, v1y) = (x2 - x1, y2 - y1) in
+  let (v2x, v2y) = (x3 - x2, y3 - y2) in
+  0 < v1x * v2y - v1y * v2x
 
 let rec graham_scan sorted_ps =
   match sorted_ps with
