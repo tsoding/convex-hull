@@ -1,7 +1,9 @@
-all: points.coord.txt Makefile.points
+all: points.ml Makefile.points
 
-points.coord.txt: points.txt
-	cat points.txt | grep black | sed -r 's/^([0-9]+),([0-9]+).*$$/\1 \2/' | sort -n > points.coord.txt
+points.ml: points.txt
+	echo "let test_ps = [" > points.ml
+	cat points.txt | grep black | sed -r 's/^([0-9]+),([0-9]+).*$$/    (\1, \2);/' | sort -n >> points.ml
+	echo "]" >> points.ml
 
 points.txt: points.png
 	convert points.png points.txt
