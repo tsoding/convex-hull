@@ -1,3 +1,6 @@
+(* check_clockwise (1, 8) (4, 1) (7, 6) *)
+(* check_clockwise (1, 2) (4, 8) (7, 1) *)
+
 
 let test_ps = [(1, 1);
                (2, 5);
@@ -22,7 +25,7 @@ let angle_sort (sx, sy) ps =
 let check_clockwise (x1, y1) (x2, y2) (x3, y3) =
   let (v1x, v1y) = (x2 - x1, y2 - y1) in
   let (v2x, v2y) = (x3 - x2, y3 - y2) in
-  0 < v1x * v2y - v1y * v2x
+  v1x * v2y - v1y * v2x < 0
 
 let rec graham_scan sorted_ps =
   match sorted_ps with
