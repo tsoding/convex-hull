@@ -9,8 +9,6 @@ let test_ps = [(1, 1);
                (3, 2);
                (2, 2)]
 
-(* let (|>) x f = f x *)
-
 let find_start_point ps = 
   List.fold_left min (max_int, max_int) ps
   
@@ -41,3 +39,16 @@ let convex_hull ps =
        let sorted_ps = angle_sort start_point ps in
        graham_scan sorted_ps
   else ps
+
+let distance (x1, y1) (x2, y2) = 
+  let dx = float_of_int (x2 - x1) in
+  let dy = float_of_int (y2 - y1) in
+  sqrt (dx *. dx +. dy *. dy)
+
+let solve ps =
+  let ch = convex_hull ps in
+  [List.tl ch; [List.hd ch]]
+  |> List.concat
+  |> List.combine ch
+  |> List.map (fun (v1, v2) -> distance v1 v2)
+  |> List.fold_left (+.) 0.
