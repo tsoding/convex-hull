@@ -1,5 +1,8 @@
+let swap (x, y) = (y, x)
+
 let find_start_point ps =
-  List.fold_left min (max_int, max_int) ps
+  let accumulate p1 p2 = swap @@ min (swap p1) (swap p2) in
+  List.fold_left accumulate (max_int, max_int) ps
 
 let angle_sort (sx, sy) ps =
   let vs = List.map (fun (px, py) -> (px - sx, py - sy)) ps in
