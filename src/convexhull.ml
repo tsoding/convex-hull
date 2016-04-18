@@ -1,6 +1,7 @@
-let swap (x, y) = (y, x)
+open BatTuple
 
 let find_start_point ps =
+  let swap = Tuple2.swap in
   let accumulate p1 p2 = swap @@ min (swap p1) (swap p2) in
   List.fold_left accumulate (max_int, max_int) ps
 
