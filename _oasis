@@ -15,4 +15,5 @@ Executable "convex-hull"
   Path: src
   MainIs: main.ml
   BuildDepends:
-    graphics
+    graphics,
+    batteries

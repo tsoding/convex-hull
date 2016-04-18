@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 342b60fad8ebae54a92c78f5f37de69f)
+# DO NOT EDIT (digest: 00b17726b15150ae26aeb2cb332c54cf)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -15,6 +15,8 @@ true: annot, bin_annot
 "_darcs": -traverse
 "_darcs": not_hygienic
 # Executable convex-hull
+"src/main.byte": pkg_batteries
 "src/main.byte": pkg_graphics
+<src/*.ml{,i,y}>: pkg_batteries
 <src/*.ml{,i,y}>: pkg_graphics
 # OASIS_STOP
