@@ -1,8 +1,7 @@
-open BatTuple
+open BatTuple.Tuple2
 open BatPervasives
 
 let find_start_point ps =
-  let swap = Tuple2.swap in
   let accumulate p1 p2 = swap @@ min (swap p1) (swap p2) in
   List.fold_left accumulate (max_int, max_int) ps
 
@@ -11,7 +10,7 @@ let angle_sort (sx, sy) ps =
   let angles = List.map (fun (vx, vy) -> atan2 (float_of_int vy) (float_of_int vx)) vs
   in angles
      |> List.combine ps
-     |> List.sort (fun (_, a1) (_, a2) -> compare a1 a2)
+     |> List.sort (fun (_, a1) (_, a2) -> Pervasives.compare a1 a2)
      |> List.map fst
 
 let ccw (x1, y1) (x2, y2) (x3, y3) =
