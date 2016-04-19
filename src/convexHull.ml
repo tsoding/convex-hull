@@ -1,8 +1,6 @@
 open BatTuple
 open BatPervasives
 
-let hello x = undefined
-
 let find_start_point ps =
   let swap = Tuple2.swap in
   let accumulate p1 p2 = swap @@ min (swap p1) (swap p2) in
