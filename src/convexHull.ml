@@ -7,7 +7,7 @@ let find_start_point ps =
 
 let angle_sort (sx, sy) ps =
   let vs = List.map (fun (px, py) -> (px - sx, py - sy)) ps in
-  let angles = List.map (fun (vx, vy) -> atan2 (float_of_int vy) (float_of_int vx)) vs
+  let angles = List.map (mapn float_of_int %> swap %> uncurry atan2) vs
   in angles
      |> List.combine ps
      |> List.sort (fun (_, a1) (_, a2) -> Pervasives.compare a1 a2)
