@@ -10,14 +10,22 @@ let ps: (point ref) list ref = ref []
 let dragging_point: point ref option ref = ref None
 let exit_program = ref false
 
+let render_coordinates ((x, y): point): unit =
+  moveto (x + circle_radious) (y + circle_radious);
+  [x; y]
+  |> List.map string_of_int
+  |> String.concat ","
+  |> draw_string
+
+let render_point ((x, y) : point): unit =
+  draw_circle x y circle_radious;
+  render_coordinates (x, y)
+
 let render_state () =
   let pure_ps = List.map (!) !ps in
   let ch = convex_hull pure_ps in
   clear_graph ();
-  List.iter (fun (x, y) -> draw_circle x y circle_radious;
-                           moveto (x + circle_radious) (y + circle_radious);
-                           draw_string @@ String.concat "," [(string_of_int x); (string_of_int y)])
-            pure_ps;
+  List.iter render_point pure_ps;
   draw_poly @@ Array.of_list ch
 
 let prev_button_state = ref false
