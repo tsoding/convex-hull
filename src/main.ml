@@ -1,5 +1,5 @@
 open Graphics
-open Convexhull
+open ConvexHull
 
 let ps = ref []
 

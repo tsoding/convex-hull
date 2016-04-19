@@ -1,4 +1,7 @@
 open BatTuple
+open BatPervasives
+
+let hello x = undefined
 
 let find_start_point ps =
   let swap = Tuple2.swap in
