@@ -47,7 +47,8 @@ let rec handle_mouse (): unit =
                     then let clicked_point = clicked_on_point mp
                          in (match clicked_point with
                              | Some rp -> dragging_point := clicked_point
-                             | None -> ps := (ref mp) :: !ps)
+                             | None -> let new_point = ref mp in
+                                       (ps := new_point :: !ps); dragging_point := Some new_point)
    | false, true -> dragging_point := None
    | _ -> ());
   prev_button_state := current_button_state
