@@ -35,6 +35,7 @@ let rec graham_scan sorted_ps =
 let convex_hull ps =
   if List.length ps > 3
   then let start_point = find_start_point ps in
-       let sorted_ps = start_point :: (angle_sort start_point @@ List.filter (fun p -> p != start_point) ps) in
-       graham_scan sorted_ps
+       let sorted_ps = start_point :: (List.filter ((!=) start_point) ps
+                                       |> angle_sort start_point)
+       in graham_scan sorted_ps
   else ps
