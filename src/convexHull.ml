@@ -27,15 +27,11 @@ let rec drop_until_ccw p1 convex_hull =
 let rec graham_scan sorted_ps =
   match sorted_ps with
   | p1 :: rest_sorted_ps ->
-     p1 :: (rest_sorted_ps
-            |> graham_scan
-            |> drop_until_ccw p1)
+     p1 :: (rest_sorted_ps |> graham_scan |> drop_until_ccw p1)
   | [] -> []
 
 let convex_hull ps =
-  if List.length ps > 3
-  then let start_point = find_start_point ps in
-       let sorted_ps = start_point :: (List.filter ((!=) start_point) ps
-                                       |> angle_sort start_point)
-       in graham_scan sorted_ps
-  else ps
+  let start_point = find_start_point ps in
+  let sorted_ps = start_point :: (List.filter ((!=) start_point) ps
+                                  |> angle_sort start_point)
+  in graham_scan sorted_ps
