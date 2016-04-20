@@ -9,6 +9,7 @@ let circle_radious = 10
 let ps: (point ref) list ref = ref []
 let dragging_point: point ref option ref = ref None
 let exit_program = ref false
+let prev_button_state = ref false
 
 let render_coordinates ((x, y): point): unit =
   moveto (x + circle_radious) (y + circle_radious);
@@ -27,8 +28,6 @@ let render_state () =
   clear_graph ();
   List.iter render_point pure_ps;
   draw_poly @@ Array.of_list ch
-
-let prev_button_state = ref false
 
 let is_mouse_pos_ok (pos_x, pos_y : int * int) : bool =
   0 <= pos_x && pos_x < size_x () && 0 <= pos_y && pos_y < size_y ()
