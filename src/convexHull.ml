@@ -26,8 +26,10 @@ let rec drop_until_ccw p1 convex_hull =
 
 let rec graham_scan sorted_ps =
   match sorted_ps with
-  | p1 :: rest_sorted_ps -> let rest_convex_hull = drop_until_ccw p1 @@ graham_scan rest_sorted_ps in
-                            p1 :: rest_convex_hull
+  | p1 :: rest_sorted_ps ->
+     p1 :: (rest_sorted_ps
+            |> graham_scan
+            |> drop_until_ccw p1)
   | [] -> []
 
 let convex_hull ps =
